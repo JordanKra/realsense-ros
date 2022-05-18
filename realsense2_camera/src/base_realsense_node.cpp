@@ -1817,7 +1817,9 @@ void BaseRealSenseNode::pose_callback(rs2::frame frame)
     msg.child_frame_id = _frame_id[POSE];
     msg.transform.translation.x = pose_msg.pose.position.x;
     msg.transform.translation.y = pose_msg.pose.position.y;
-    msg.transform.translation.z = pose_msg.pose.position.z;
+
+    //Eliminate any height in the transform
+    msg.transform.translation.z = 0.0;
 
     // Eliminate any roll and pitch in the transform
     msg.transform.rotation.x = 0.0;
