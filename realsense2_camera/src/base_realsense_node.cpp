@@ -1818,8 +1818,10 @@ void BaseRealSenseNode::pose_callback(rs2::frame frame)
     msg.transform.translation.x = pose_msg.pose.position.x;
     msg.transform.translation.y = pose_msg.pose.position.y;
     msg.transform.translation.z = pose_msg.pose.position.z;
-    msg.transform.rotation.x = pose_msg.pose.orientation.x;
-    msg.transform.rotation.y = pose_msg.pose.orientation.y;
+
+    // Eliminate any roll and pitch in the transform
+    msg.transform.rotation.x = 0.0;
+    msg.transform.rotation.y = 0.0;
     msg.transform.rotation.z = pose_msg.pose.orientation.z;
     msg.transform.rotation.w = pose_msg.pose.orientation.w;
 
